@@ -10,7 +10,7 @@ import InjectTableRow from './TableRow';
 
 const factory = (TableHead, TableRow) => {
   const isTableHead = child => isComponentOfType(TableHead, child);
-  const isTableRow = child => isComponentOfType(TableRow, child);
+  const isTableRow = child => !isComponentOfType(TableHead, child);
 
   class Table extends Component {
     static propTypes = {
