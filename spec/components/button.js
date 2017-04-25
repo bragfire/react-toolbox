@@ -41,6 +41,8 @@ const ButtonTest = () => (
     <BrowseButton icon="folder_open" label="BROWSE" raised primary />
     &nbsp;
     <BrowseButton label="BROWSE" raised />
+    &nbsp;
+    <BrowseButton label="BROWSE MANY" multiple />
   </section>
 );
 

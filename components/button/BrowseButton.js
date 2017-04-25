@@ -21,6 +21,7 @@ const factory = (ripple, FontIcon) => {
       inverse: PropTypes.bool,
       label: PropTypes.string,
       mini: PropTypes.bool,
+      multiple: PropTypes.bool,
       neutral: PropTypes.bool,
       onChange: PropTypes.func,
       onMouseLeave: PropTypes.func,
@@ -96,6 +97,7 @@ const factory = (ripple, FontIcon) => {
         primary,   // eslint-disable-line
         raised,    // eslint-disable-line
         theme,
+        multiple,
         ...others
       } = this.props;
       const element = 'label';
@@ -121,7 +123,7 @@ const factory = (ripple, FontIcon) => {
       return React.createElement(element, props,
           icon ? <FontIcon className={theme.icon} value={icon} /> : null,
         <span>{label}</span>,
-        <input className={classes} type="file" onChange={this.handleFileChange} />,
+        <input className={classes} type="file" onChange={this.handleFileChange} multiple={multiple} />,
           children,
         );
     }
