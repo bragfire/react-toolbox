@@ -112,6 +112,10 @@
   &.active {
     display: flex;
   }
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .fixed {
