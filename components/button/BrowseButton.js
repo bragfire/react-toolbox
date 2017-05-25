@@ -104,6 +104,12 @@ const factory = (ripple, FontIcon) => {
       const level = this.getLevel();
       const shape = this.getShape();
 
+      // Assign an ID to work around Edge bug:
+      // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/8282613/
+      //
+      // FIXME Insufficient if there are multiple buttons on the page at once.
+      const id = 'RTBrowseButton';
+
       const classes = classnames(theme.button, [theme[shape]], {
         [theme[level]]: neutral,
         [theme.mini]: mini,
@@ -117,15 +123,20 @@ const factory = (ripple, FontIcon) => {
         disabled: this.props.disabled,
         onMouseUp: this.handleMouseUp,
         onMouseLeave: this.handleMouseLeave,
+        htmlFor: id,
         'data-react-toolbox': 'label',
       };
 
-      return React.createElement(element, props,
-          icon ? <FontIcon className={theme.icon} value={icon} /> : null,
+      const labelElement = React.createElement(element, props,
+        icon ? <FontIcon className={theme.icon} value={icon} /> : null,
         <span>{label}</span>,
-        <input className={classes} type="file" onChange={this.handleFileChange} multiple={multiple} />,
-          children,
-        );
+        children,
+      );
+
+      return (<span>
+        {labelElement}
+        <input style={{ display: 'none' }} className={classes} type="file" onChange={this.handleFileChange} multiple={multiple} id={id} />
+      </span>);
     }
   }
 
